@@ -38,8 +38,8 @@ class TodoList extends Component {
   render() {
     return (
       <ul className="list">
-        {this.state.tasks.map((item) => (
-          <TodoItem key={item.id} data={item} deleteHandler={this.deleteHandler} />
+        {this.state.tasks.map((task) => (
+          <TodoItem key={task.id} data={task} deleteHandler={this.deleteHandler} />
         ))}
       </ul>
     );
