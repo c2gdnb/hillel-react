@@ -1,18 +1,16 @@
 import { Component } from "react";
 import trashBinIcon from "../../assets/trash.svg";
 
-class TodoItem extends Component {
+class TodoItem extends Component {  
   render() {
     return (
-      this.props.data.map((item, index) =>
-        <li key={item.id} className={`list__item ${item.completed? "list__item--done": "list__item--not-done"}`}>
-        {item.title}
-        <button className="delete-btn" title="Delete" onClick={() => this.props.deleteHandler(index) }>
+        <li className={`list__item ${this.props.data.completed ? "list__item--done" : "list__item--not-done"}`}>
+        {this.props.data.title}
+        <button className="delete-btn" title="Delete" onClick={() => this.props.deleteHandler(this.props.data.id) }>
           <img src={trashBinIcon} className="delete-icon" alt="logo" />
         </button>
       </li>
       )
-    );
   }
 }
 export default TodoItem;

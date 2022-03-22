@@ -38,18 +38,16 @@ class TodoList extends Component {
   render() {
     return (
       <ul className="list">
-          <TodoItem
-            data={this.state.tasks}
-            deleteHandler={this.deleteHandler}
-          />
+        {this.state.tasks.map((item) => (
+          <TodoItem key={item.id} data={item} deleteHandler={this.deleteHandler} />
+        ))}
       </ul>
     );
   }
 
-  deleteHandler = (index) => {
-    const {tasks} = this.state;
-    tasks.splice(index, 1);
-    this.setState({ tasks : tasks });
+  deleteHandler = (id) => {
+    const newTasks = this.state.tasks.filter((value) => value.id !== id);
+    this.setState({ tasks: newTasks });
   };
 }
 
