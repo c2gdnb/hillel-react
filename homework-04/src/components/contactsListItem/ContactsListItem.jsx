@@ -13,10 +13,10 @@ class ContactsListItem extends Component {
         className="contact-list-item"
         onClick={this.props.onSelect.bind(null, contact)}
       >
-        {contact.name} {contact.surname} - {contact.phone}
-        <a href="#" onClick={this.onDeleteClick}>
+        {contact.name} {contact.sername} - {contact.phone}
+        <button type="button" onClick={this.onDeleteClick}>
           Delete
-        </a>
+        </button>
       </li>
     );
   }

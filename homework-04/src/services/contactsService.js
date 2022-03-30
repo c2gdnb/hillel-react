@@ -21,7 +21,7 @@ export function updateContact(contact) {
 }
 
 export function deleteContact(id) {
-  return fetch(URL + id, {
+  return fetch(`${URL}/${id}`, {
     method: "DELETE",
   }).then((res) => res.json());
 }

@@ -3,17 +3,22 @@ import React, { Component } from "react";
 class ContactForm extends Component {
   constructor(props) {
     super(props);
+    this.onChange = this.onChange.bind(this);
+    this.onContactFormSubmit = this.onContactFormSubmit.bind(this);
+
     this.state = {
       ...props.contact,
     };
   }
   
   onDeleteBtnClick() {
-    this.props.onDelete(this.props.contact);
+    this.props.onDelete(this.state);
   }
+  
   onContactFormSubmit(e) {
     e.preventDefault();
-    this.props.onSave(this.props.contact);
+
+    this.props.onSave(this.state);
   }
 
   onChange(e) {
@@ -40,9 +45,9 @@ class ContactForm extends Component {
         <label htmlFor="surnameInput">Surname</label>
         <input
           type="text"
-          name="surname"
+          name="sername"
           id="surnameInput"
-          value={this.state.surname}
+          value={this.state.sername}
           onChange={this.onChange}
         />
         <label htmlFor="phoneInput">Phone</label>
