@@ -1,13 +1,194 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 24px;
+}
+
+.table {
+  width: 100%;
+  background: #fff;
+  margin-bottom: 24px;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0.28571429rem;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.87);
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table thead th {
+  cursor: auto;
+  background: #f9fafb;
+  text-align: inherit;
+  color: rgba(0, 0, 0, 0.87);
+  vertical-align: inherit;
+  font-style: none;
+  font-weight: 700;
+  text-transform: none;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.1);
+  border-left: none;
+}
+
+.table td {
+  padding: 0.78571429em 0.78571429em;
+  text-align: inherit;
+}
+
+.table tr td,
+.table tr th {
+  border-left: 1px solid rgba(34, 36, 38, 0.1);
+  padding: 8px 1em;
+}
+
+.table tr td:first-child,
+.table tr th:first-child {
+  border-left: none;
+}
+
+.table thead tr:first-child > th:first-child {
+  border-radius: 0.28571429rem 0 0 0;
+}
+
+.table thead tr:first-child > th:last-child {
+  border-radius: 0 0.28571429rem 0 0;
+}
+
+form {
+  display: flex;
+}
+
+.form .field > label {
+  display: block;
+  margin: 0 0 0.28571429rem 0;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.92857143em;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.form input[type="text"] {
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  line-height: 1.21428571em;
+  padding: 0.67857143em 1em;
+  font-size: 1em;
+  background: #fff;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0.28571429rem;
+  -webkit-box-shadow: 0 0 0 0 transparent inset;
+  box-shadow: 0 0 0 0 transparent inset;
+  -webkit-transition: color 0.1s ease, border-color 0.1s ease;
+  transition: color 0.1s ease, border-color 0.1s ease;
+  max-width: 78%;
+}
+
+.fields {
+  display: flex;
+  max-width: 520px;
+  margin-right: 8px;
+}
+
+.field {
+  width: calc(33.3333% - 6px);
+  margin-right: 6px;
+}
+
+.field:last-child {
+  margin-right: 0;
+}
+
+.form .buttons {
+  display: flex;
+  align-items: flex-end;
+}
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  outline: 0;
+  border: none;
+  vertical-align: baseline;
+  background: #e0e1e2 none;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  margin: 0 0.25em 0 0;
+  padding: 0.78571429em 1.5em 0.78571429em;
+  text-transform: none;
+  text-shadow: none;
+  font-weight: 700;
+  line-height: 1em;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0.28571429rem;
+  -webkit-box-shadow: 0 0 0 1px transparent inset,
+    0 0 0 0 rgb(34 36 38 / 15%) inset;
+  box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgb(34 36 38 / 15%) inset;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: opacity 0.1s ease, background-color 0.1s ease,
+    color 0.1s ease, background 0.1s ease, -webkit-box-shadow 0.1s ease;
+  transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease,
+    background 0.1s ease, -webkit-box-shadow 0.1s ease;
+  transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease,
+    box-shadow 0.1s ease, background 0.1s ease;
+  transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease,
+    box-shadow 0.1s ease, background 0.1s ease, -webkit-box-shadow 0.1s ease;
+  will-change: "";
+  -webkit-tap-highlight-color: transparent;
+  font-size: 1em;
+  min-height: 43px;
+}
+
+.button:hover {
+  background-color: #cacbcd;
+}
+
+.button.primary {
+  box-shadow: 0 0 0 0 rgb(34 36 38 / 15%) inset;
+  background-color: #2185d0;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+  min-width: 130px;
+  margin-right: 8px;
+}
+
+.button.primary:hover {
+  background-color: #1678c2;
+}
+
+.centered {
+  text-align: center;
+}
+
+.centered .button {
+  margin: 0;
+}
+
+.delete-icon {
+  max-width: 16px;
+}
+.delete-btn {
+  margin: auto;
+  width: 32px;
+  display: flex;
+  height: 26px;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
