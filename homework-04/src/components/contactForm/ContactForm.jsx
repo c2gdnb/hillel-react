@@ -1,27 +1,12 @@
 import { useState } from "react";
 
 export default function ContactForm(props) {
-  // constructor(props) {
-  //   super(props);
-  //   this.onChange = this.onChange.bind(this);
-  //   this.onContactFormSubmit = this.onContactFormSubmit.bind(this);
+  const [contactInfo, setContactInfo] = useState({ ...props.contact });
 
-  //   this.state = {
-  //     ...props.contact,
-  //   };
-  // }
-
-  const onDeleteBtnClick = () =>  {
-    props.onDelete(this.state);
-  }
-  
   const onContactFormSubmit = (e) => {
     e.preventDefault();
-
-    this.props.onSave(this.state);
-  }
-
-  const [contactInfo, setContactInfo] = useState({...props.contact});
+    props.onSave(contactInfo);
+  };
 
   const onChange = (e) => {
     setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });

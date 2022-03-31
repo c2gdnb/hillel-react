@@ -4,25 +4,26 @@ import ContactForm from "../contactForm/ContactForm";
 import ContactsList from "../contactsList/ContactsList";
 
 class Contacts extends Component {
+  state = {
+    selectedContact: this.getEmptyContact(),
+    contacts: [],
+    page: "list",
+  };
   constructor(props) {
     super(props);
-    this.onContactDelete = this.onContactDelete.bind(this);
+    this.onAddNewBtnClick = this.onAddNewBtnClick.bind(this);
+    this.onCancel = this.onCancel.bind(this);
     this.onContactSelect = this.onContactSelect.bind(this);
+    this.onContactDelete = this.onContactDelete.bind(this);
     this.onSave = this.onSave.bind(this);
-
-    this.state = {
-      selectedContact: this.getEmptyContact(),
-      contacts: [],
-      page: "list",
-    };
+    this.createContact = this.createContact.bind(this);
+    this.updateContact = this.updateContact.bind(this);
   }
-
   componentDidMount() {
     contactsService.getContactsList().then((data) => {
       this.setState({ contacts: data });
     });
   }
-
   getEmptyContact() {
     return {
       name: "",
@@ -30,26 +31,23 @@ class Contacts extends Component {
       phone: "",
     };
   }
-
   onAddNewBtnClick = () => {
     this.setState({
       selectedContact: this.getEmptyContact(),
       page: "form",
     });
   };
-
   onCancel = () => {
     this.setState({
       page: "list",
     });
   };
-
   onContactSelect(contact) {
     this.setState({
       selectedContact: contact,
+      page: "form",
     });
   }
-
   onContactDelete(contact) {
     const contacts = this.state.contacts.filter((el) => el !== contact);
     contactsService.deleteContact(contact.id);
@@ -59,26 +57,25 @@ class Contacts extends Component {
       selectedContact: this.getEmptyContact(),
     });
   }
-
   onSave(contact) {
     if (contact.id) {
       this.updateContact(contact);
     } else {
       this.createContact(contact);
     }
+    this.setState({
+      page: "list",
+    });
   }
-
   createContact(contact) {
     contactsService.createContact(contact).then((data) => {
       const contacts = [...this.state.contacts, data];
       this.setState({
         contacts,
         selectedContact: data,
-        page: "list",
       });
     });
   }
-
   updateContact(contact) {
     contactsService.updateContact(contact).then((data) => {
       const contacts = this.state.contacts.map((el) =>
@@ -90,7 +87,6 @@ class Contacts extends Component {
       });
     });
   }
-
   render() {
     return (
       <>
