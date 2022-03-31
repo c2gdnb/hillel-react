@@ -3,11 +3,11 @@ import trashBinIcon from "../../assets/trash.svg";
 
 export default class ContactsItem extends Component {
   render() {
-    const { name, sername, phone, id } = this.props.contact;
+    const { name, surname, phone, id } = this.props.contact;
     return (
       <tr>
         <td>{name}</td>
-        <td>{sername}</td>
+        <td>{surname}</td>
         <td>{phone}</td>
         <td>
           <button

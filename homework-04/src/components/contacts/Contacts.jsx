@@ -26,7 +26,7 @@ class Contacts extends Component {
   getEmptyContact() {
     return {
       name: "",
-      sername: "",
+      surname: "",
       phone: "",
     };
   }

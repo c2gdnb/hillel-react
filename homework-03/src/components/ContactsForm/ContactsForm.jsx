@@ -5,7 +5,7 @@ export default class ContactsForm extends Component {
     super(props);
     this.state = {
       name: "",
-      sername: "",
+      surname: "",
       phone: "",
     };
 
@@ -17,7 +17,7 @@ export default class ContactsForm extends Component {
     e.preventDefault();
     const newItem = {
       name: this.state.name,
-      sername: this.state.sername,
+      surname: this.state.surname,
       phone: this.state.phone,
     };
 
@@ -47,9 +47,9 @@ export default class ContactsForm extends Component {
             <label>Surname</label>
             <input
               type="text"
-              name="sername"
+              name="surname"
               placeholder="Surname"
-              value={this.state.sername}
+              value={this.state.surname}
               onChange={this.onChange}
             />
           </div>

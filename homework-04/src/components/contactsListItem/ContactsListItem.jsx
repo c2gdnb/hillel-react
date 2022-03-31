@@ -1,30 +1,20 @@
-import { Component } from "react";
+export default function ContactsListItem(props) {
+  const { contact } = props;
 
-class ContactsListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.onDeleteClick = this.onDeleteClick.bind(this);
-  }
-  state = {};
-  render() {
-    const { contact } = this.props;
-    return (
-      <li
-        className="contact-list-item"
-        onClick={this.props.onSelect.bind(null, contact)}
-      >
-        {contact.name} {contact.sername} - {contact.phone}
-        <button type="button" onClick={this.onDeleteClick}>
-          Delete
-        </button>
-      </li>
-    );
-  }
-
-  onDeleteClick(e) {
+  const onDeleteClick = (e) => {
     e.preventDefault();
-    this.props.onDelete(this.props.contact);
-  }
-}
+    props.onDelete(props.contact);
+  };
 
-export default ContactsListItem;
+  return (
+    <li
+      className="contact-list-item"
+      onClick={props.onSelect.bind(null, contact)}
+    >
+      {contact.name} {contact.surname} - {contact.phone}
+      <button type="button" onClick={onDeleteClick}>
+        Delete
+      </button>
+    </li>
+  );
+}
