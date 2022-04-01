@@ -3,6 +3,8 @@ import * as contactsService from "../../services/contactsService";
 import ContactForm from "../contactForm/ContactForm";
 import ContactsList from "../contactsList/ContactsList";
 
+import "./Contacts.css";
+
 export default function Contacts() {
   const [selectedContact, setSelectedContact] = useState(getEmptyContact());
   const [contacts, setContacts] = useState([]);
@@ -74,7 +76,7 @@ export default function Contacts() {
   }
 
   return (
-    <>
+    <div className="container">
       {page === "list" ? (
         <>
           <ContactsList
@@ -93,6 +95,6 @@ export default function Contacts() {
           onSave={onSave}
         />
       )}
-    </>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./ContactsListItem.css";
 
 export default function ContactsListItem(props) {
   const { contact } = props;
@@ -19,9 +19,9 @@ export default function ContactsListItem(props) {
   return (
     <li className="contact-list-item" onClick={onSelectClick}>
       {contact.name} {contact.surname} - {contact.phone}
-      <button type="button" onClick={onDeleteClick}>
+      <a href="#" onClick={onDeleteClick}>
         Delete
-      </button>
+      </a>
     </li>
   );
 }

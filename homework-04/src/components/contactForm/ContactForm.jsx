@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import "./ContactForm.css";
+
 export default function ContactForm(props) {
   const [contactInfo, setContactInfo] = useState({ ...props.contact });
 

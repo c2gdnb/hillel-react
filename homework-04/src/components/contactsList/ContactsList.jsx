@@ -1,5 +1,5 @@
 import ContactsListItem from "../contactsListItem/ContactsListItem";
-import "./styles.css";
+import "./ContactsList.css";
 
 export default function ContactsList(props) {
   return (
