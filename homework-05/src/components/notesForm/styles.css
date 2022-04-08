@@ -1,0 +1,30 @@
+.note-form {
+  margin: 32px 16px 40px 16px;
+  display: flex;
+}
+
+.note-form__button {
+  height: 48px;
+  color: #4a4a4a;
+  border: none;
+  background-color: #ffc107;
+  min-width: 160px;
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.note-form__button:hover {
+  background-color: #ffd24b;
+}
+
+.note-form__input {
+  font-size: 20px;
+  margin-right: 20px;
+  width: 77%;
+  flex-shrink: 0;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
