@@ -1,38 +1,51 @@
-import * as contactsService from "../../services/contactsService";
-import { useState, useEffect } from "react";
+import { createNote, deleteNote, getNotes, updateNote } from "../../services/notes";
+import { useCallback, useEffect } from "react";
 import NotesList from "../notesList/NotesList";
 import NotesForm from "../notesForm/NotesForm";
+import { useAsync } from "../../hooks/common";
 
 import "./styles.css";
 
 function Notes() {
-  const [notes, setNotes] = useState([]);
+  const { run, data: notes, setData: setNotes } = useAsync(getNotes, []);
 
-  useEffect(() => {
-    contactsService.getContactsList().then((data) => {
-      setNotes(data);
-    });
-  }, []);
+  useEffect(() => run(), []);
 
-  function createContact(note) {
-    contactsService.createContact(note).then((data) => {
-      const newNotes = [...notes, data];
+  const onCreateNote = useCallback(
+    (description) => {
+      const newItem = {
+        description,
+      };
+      createNote(newItem).then((data) => {
+        setNotes([...notes, data]);
+      });
+    },
+    [notes]
+  );
+
+  const onUpdateNote = (note) => {
+    updateNote(note).then((data) => {
+      const newNotes = notes.map((el) => (el.id === note.id ? note : el));
 
       setNotes(newNotes);
     });
-  }
+  };
 
-  function onNoteDelete(note) {
+  const onNoteDelete = (note) => {
     const newNotes = notes.filter((el) => el !== note);
-    contactsService.deleteContact(note.id);
+    deleteNote(note.id);
 
     setNotes(newNotes);
-  }
+  };
 
   return (
     <div className="container">
-      <NotesForm oncreate={createContact}/>
-      <NotesList notes={notes} onDelete={onNoteDelete} />
+      <NotesForm onCreateNote={onCreateNote} />
+      <NotesList
+        notes={notes}
+        onDelete={onNoteDelete}
+        onUpdateNote={onUpdateNote}
+      />
     </div>
   );
 }

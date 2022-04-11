@@ -1,35 +1,39 @@
 import { useState } from "react";
 import "./styles.css";
 
-function NotesForm(props) {
-  const [contactInfo, setContactInfo] = useState({ description: "" });
+function NotesForm({ onCreateNote }) {
+  const [description, setDescription] = useState("");
 
-  const onContactFormSubmit = (e) => {
+  const onInputChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const onSubmitButtonClick = (e) => {
     e.preventDefault();
 
-    if (contactInfo.description.length) {
-      props.oncreate(contactInfo);
-      setContactInfo({ description: "" });
+    if (description.length) {
+      onCreateNote(description);
+      setDescription("");
     } else {
       return;
     }
   };
 
-  const onChange = (e) => {
-    setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });
-  };
-
   return (
-    <form className="note-form" onSubmit={onContactFormSubmit}>
+    <form action="" className="note-form">
       <input
         type="text"
         name="description"
         placeholder="Enter note description here"
         className="note-form__input"
-        value={contactInfo.description}
-        onChange={onChange}
+        value={description}
+        onChange={onInputChange}
       />
-      <button type="submit" className="note-form__button">
+      <button
+        type="submit"
+        className="note-form__button"
+        onClick={onSubmitButtonClick}
+      >
         Add
       </button>
     </form>

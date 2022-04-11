@@ -6,7 +6,12 @@ function NotesList(props) {
     <>
       <ul className="note-list">
         {props.notes.map((note) => (
-          <NotesItem key={note.id} note={note} onDelete={props.onDelete}/>
+          <NotesItem
+            key={note.id}
+            note={note}
+            onDelete={props.onDelete}
+            onUpdateNote={props.onUpdateNote}
+          />
         ))}
       </ul>
     </>
