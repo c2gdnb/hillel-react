@@ -1,4 +1,3 @@
-import React from "react";
 import ContactsListItem from "../contactsListItem/ContactsListItem";
 import "./ContactsList.css";
 

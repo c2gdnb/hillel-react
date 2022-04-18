@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-import * as contactsService from "../../services/contactsService";
+import React, { useState, useContext } from "react";
 import ContactForm from "../contactForm/ContactForm";
 import ContactsList from "../contactsList/ContactsList";
+import ContactThemeSwitcher from "../contactThemeSwitcher/ContactThemeSwitcher";
+import useContacts from "../../hooks/common";
+import ThemeContext from "../../context/ThemeContext";
 import "./Contacts.css";
 
 function getEmptyContact() {
@@ -13,15 +15,22 @@ function getEmptyContact() {
 }
 
 function Contacts() {
+  const { contacts, addContact, deleteContact, updateContact } = useContacts();
   const [selectedContact, setSelectedContact] = useState(getEmptyContact());
-  const [contacts, setContacts] = useState([]);
   const [page, setPage] = useState("list");
+  const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    contactsService.getContactsList().then((data) => {
-      setContacts(data);
-    });
-  }, []);
+  const onCreateContact = (contact) => {
+    addContact(contact);
+  };
+
+  const onUpdateContact = (contact) => {
+    updateContact(contact);
+  };
+
+  const onContactDelete = (contact) => {
+    deleteContact(contact.id);
+  };
 
   const onAddNewBtnClick = () => {
     setSelectedContact(getEmptyContact());
@@ -37,39 +46,17 @@ function Contacts() {
     setPage("form");
   };
 
-  const onContactDelete = (contact) => {
-    const newContacts = contacts.filter((el) => el !== contact);
-    contactsService.deleteContact(contact.id);
-
-    setContacts(newContacts);
-    setSelectedContact(getEmptyContact());
-  };
   const onSave = (contact) => {
     if (contact.id) {
-      updateContact(contact);
+      onUpdateContact(contact);
     } else {
-      createContact(contact);
+      onCreateContact(contact);
     }
     setPage("list");
   };
-  const createContact = (contact) => {
-    contactsService.createContact(contact).then((data) => {
-      const newContacts = [...contacts, data];
-      setContacts(newContacts);
-      setSelectedContact(data);
-    });
-  };
-  const updateContact = (contact) => {
-    contactsService.updateContact(contact).then((data) => {
-      const newContacts = contacts.map((el) =>
-        el.id === contact.id ? contact : el
-      );
-      setContacts(newContacts);
-      setSelectedContact(contact);
-    });
-  };
+
   return (
-    <div className="container">
+    <div className={`container ${theme}`}>
       {page === "list" ? (
         <>
           <ContactsList
@@ -88,6 +75,8 @@ function Contacts() {
           onSave={onSave}
         />
       )}
+
+      <ContactThemeSwitcher />
     </div>
   );
 }

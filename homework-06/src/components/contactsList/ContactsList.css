@@ -1,17 +1,48 @@
 .contact-list {
-    width: 100%;
-    list-style: none;
-    padding: 0;
-    font-size: 20px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  font-size: 20px;
 }
 
 .contact-list li:hover {
-    background-color: lightgray;
-    cursor: pointer;
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .contact-list li {
-    text-align: center;
-    padding: 15px;
-    border-bottom: 1px solid grey;
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1px solid grey;
+}
+
+.colums .contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.colums .contact-list .contact-list-item {
+  width: 320px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.colums .contact-list .contact-list-item:hover {
+  background-color: #e5eeff;
+  border-color: #cbddff;
+}
+
+.colums .contact-list .contact-list-item a {
+  display: inline-block;
+  margin-top: 4px;
+  color: #ff8282;
+}
+
+.colums .contact-list .contact-list-item a:hover {
+  text-decoration: none;
 }
