@@ -1,26 +1,21 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navigation from "../Nav/Navigation";
-import Dashboard from "../Dashboard/Dashboard";
-import Users from "../Users/Users";
-import Albums from "../Albums/Albums";
+import UsersList from "./components/Users/UsersList/UsersList";
+import AlbumsList from "./components/Albums/AlbumsList/AlbumsList";
+import Dashboard from "./components/Dashboard/Dashboard";
 
-import "./Page.css"
-
-function Page() {
+function App() {
   return (
     <div className="container">
       <Router>
-        <Navigation />
-
         <Switch>
-          <Route path="/dashboard">
+          <Route path="/" exact>
             <Dashboard />
           </Route>
           <Route path="/users">
-            <Users />
+            <UsersList />
           </Route>
           <Route path="/albums">
-            <Albums />
+            <AlbumsList />
           </Route>
         </Switch>
       </Router>
@@ -28,4 +23,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default App;

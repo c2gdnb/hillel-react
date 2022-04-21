@@ -1,0 +1,9 @@
+.cards__item {
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.cards__item {
+  margin-bottom: 32px;
+  padding: 20px;
+}
