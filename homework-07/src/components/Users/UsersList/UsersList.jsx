@@ -1,18 +1,10 @@
-import { USERS_URI } from "../../../constants";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getContactsList } from "../../../services/service";
 import UsersListItem from "../UsersListItem/UsersListItem";
 import homeIcon from "../../../assets/home.png";
 
-function UsersList() {
-  const [users, setUsers] = useState([]);
+function UsersList(props) {
+  const { users } = props;
 
-  useEffect(() => {
-    getContactsList(USERS_URI).then((data) => {
-      setUsers(data);
-    });
-  }, []);
   return (
     <>
       <Link to="/" className="home-link">

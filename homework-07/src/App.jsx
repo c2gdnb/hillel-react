@@ -1,9 +1,12 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard";
 import UsersList from "./components/Users/UsersList/UsersList";
 import AlbumsList from "./components/Albums/AlbumsList/AlbumsList";
-import Dashboard from "./components/Dashboard/Dashboard";
+import useData from "./hooks";
 
 function App() {
+  const { users, albums } = useData();
+
   return (
     <div className="container">
       <Router>
@@ -12,10 +15,10 @@ function App() {
             <Dashboard />
           </Route>
           <Route path="/users">
-            <UsersList />
+            <UsersList users={users} />
           </Route>
           <Route path="/albums">
-            <AlbumsList />
+            <AlbumsList albums={albums} />
           </Route>
         </Switch>
       </Router>

@@ -1,18 +1,10 @@
-import { ALBUMS_URI } from "../../../constants";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getContactsList } from "../../../services/service";
 import AlbumsListItem from "../AlbumsListItem/AlbumsListItem";
 import homeIcon from "../../../assets/home.png";
 
-function AlbumsList() {
-  const [albums, setUsers] = useState([]);
+function AlbumsList(props) {
+  const { albums } = props;
 
-  useEffect(() => {
-    getContactsList(ALBUMS_URI).then((data) => {
-      setUsers(data);
-    });
-  }, []);
   return (
     <>
       <Link to="/" className="home-link">
