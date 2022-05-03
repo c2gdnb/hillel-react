@@ -20,7 +20,9 @@ function UsersForm(props) {
   const [formError, setFormError] = useState();
 
   useEffect(() => {
-    setUser({ ...props.user });
+    if (props.userId) {
+      setUser({ ...props.user });
+    }
   }, [props]);
 
   const onCreateUser = (user) => {
