@@ -8,13 +8,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 
-function UsersList({ list }) {
+function UsersList({ list, onDelete }) {
   return (
     <Box
       sx={{
         backgroundColor: "rgb(231, 235, 240)",
-        padding : "24px",
-        borderRadius : "10px"
+        padding: "24px",
+        borderRadius: "10px",
       }}
     >
       <TableContainer component={Paper}>
@@ -25,11 +25,13 @@ function UsersList({ list }) {
               <TableCell>Phone</TableCell>
               <TableCell>Email</TableCell>
               <TableCell>Website</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {list.map((user) => (
-              <UsersListItem key={user.id} item={user} />
+              <UsersListItem key={user.id} item={user} onDelete={onDelete} />
             ))}
           </TableBody>
         </Table>

@@ -1,4 +1,4 @@
-import api from "../api/api";
+import { api } from "../api/api";
 import { PHOTOS_URI } from "../constants";
 
 export function getAlbumsPhotos(albumId) {

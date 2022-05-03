@@ -2,8 +2,8 @@ import { Link as RouterLink } from "react-router-dom";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import CollectionsIcon from "@mui/icons-material/Collections";
 import GroupIcon from "@mui/icons-material/Group";
+import CollectionsIcon from "@mui/icons-material/Collections";
 
 function DashboardPage() {
   return (
