@@ -4,7 +4,7 @@ import Loading from "../components/common/Loading";
 import Typography from "@mui/material/Typography";
 
 export default function CreateUserPage() {
-  const { isLoading } = useUsers();
+  const { isLoading, addUser } = useUsers();
 
   return (
     <>
@@ -12,7 +12,7 @@ export default function CreateUserPage() {
         Add user
       </Typography>
 
-      {isLoading ? <Loading /> : <UsersForm />}
+      {isLoading ? <Loading /> : <UsersForm addUser={addUser} />}
     </>
   );
 }

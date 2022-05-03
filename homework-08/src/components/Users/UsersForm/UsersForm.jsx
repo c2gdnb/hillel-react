@@ -15,7 +15,6 @@ function getEmptyUser() {
 }
 
 function UsersForm(props) {
-  const { updateUser, addUser } = useUsers();
   const [user, setUser] = useState(getEmptyUser());
   const [formError, setFormError] = useState();
 
@@ -26,7 +25,7 @@ function UsersForm(props) {
   }, [props]);
 
   const onCreateUser = (user) => {
-    props.userId ? updateUser(user) : addUser(user);
+    props.userId ? props.updateUser(user) : props.addUser(user);
   };
 
   const onSave = (user) => {
