@@ -8,7 +8,7 @@ export default function CreateUserPage() {
 
   return (
     <>
-      <Typography variant="h2" component="h1">
+      <Typography variant="h2" component="h1" sx={{ mb: "20px" }}>
         Add user
       </Typography>
 

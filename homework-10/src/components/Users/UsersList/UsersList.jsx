@@ -22,10 +22,8 @@ function UsersList({ list, onDelete }) {
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
+              <TableCell>Surname</TableCell>
               <TableCell>Phone</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Website</TableCell>
-              <TableCell></TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>

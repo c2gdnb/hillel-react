@@ -8,10 +8,10 @@ import Link from "@mui/material/Link";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 function Users() {
-  const { users, isLoading, deleteUser } = useUsers();
+  const { users, isLoading, removeUser } = useUsers();
 
   const onUserDelete = (user) => {
-    deleteUser(user.id);
+    removeUser(user.id);
   };
 
   return (

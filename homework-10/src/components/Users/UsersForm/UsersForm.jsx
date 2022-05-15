@@ -7,9 +7,8 @@ import Button from "@mui/material/Button";
 function getEmptyUser() {
   return {
     name: "",
+    surname: "",
     phone: "",
-    email: "",
-    website: "",
   };
 }
 
@@ -81,6 +80,18 @@ function UsersForm(props) {
           sx={{ backgroundColor: "#fff" }}
         />
         <TextField
+          id="surnameInput"
+          label="Surname"
+          variant="outlined"
+          name="surname"
+          value={user.surname}
+          onChange={onChange}
+          error={formError && user.surname.length === 0}
+          helperText={formError ? "Field is empty" : null}
+          required
+          sx={{ backgroundColor: "#fff" }}
+        />
+        <TextField
           id="phoneInput"
           label="Phone"
           variant="outlined"
@@ -88,30 +99,6 @@ function UsersForm(props) {
           value={user.phone}
           onChange={onChange}
           error={formError && user.phone.length === 0}
-          helperText={formError ? "Field is empty" : null}
-          required
-          sx={{ backgroundColor: "#fff" }}
-        />
-        <TextField
-          id="emailInput"
-          label="Email"
-          variant="outlined"
-          name="email"
-          value={user.email}
-          onChange={onChange}
-          error={formError && user.email.length === 0}
-          helperText={formError ? "Field is empty" : null}
-          required
-          sx={{ backgroundColor: "#fff" }}
-        />
-        <TextField
-          id="websiteInput"
-          label="Website"
-          variant="outlined"
-          name="website"
-          value={user.website}
-          onChange={onChange}
-          error={formError && user.website.length === 0}
           helperText={formError ? "Field is empty" : null}
           required
           sx={{ backgroundColor: "#fff" }}

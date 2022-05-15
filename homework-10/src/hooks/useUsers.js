@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { getUsersList } from "../services/usersService";
+import {
+  getUsersList,
+  createUser,
+  deleteUser,
+  updateUser,
+} from "../services/usersService";
 import { useBooleanFlag } from "./common";
-import { apiUsers } from "../api/api";
-import { USERS_URI } from "../constants";
 import { useNavigate } from "react-router-dom";
 
 export default function useUsers() {
@@ -18,23 +21,22 @@ export default function useUsers() {
       .then((data) => setUsers(data))
       .catch((err) => setError(err))
       .finally(() => toggleIsLoading(false));
-  }, []);
+  }, [toggleIsLoading]);
 
   function addUser(user) {
-    apiUsers
-      .post(USERS_URI, user)
+    createUser(user)
       .then(({ data }) => setUsers((users) => [...users, data]))
       .then(() => navigate("/"));
   }
 
-  function deleteUser(id) {
-    apiUsers.delete(`${USERS_URI}/${id}`);
-    setUsers(users.filter((item) => item.id !== id));
+  function removeUser(id) {
+    deleteUser(id).then(() => {
+      setUsers((users) => users.filter((user) => user.id !== id));
+    });
   }
 
-  function updateUser(user) {
-    apiUsers
-      .put(`${USERS_URI}/${user.id}`, user)
+  function editUser(user) {
+    updateUser(user)
       .then(({ data }) =>
         setUsers((users) =>
           users.map((item) => (item.id === user.id ? data : item))
@@ -48,7 +50,7 @@ export default function useUsers() {
     isLoading,
     error,
     addUser,
-    deleteUser,
-    updateUser,
+    removeUser,
+    editUser,
   };
 }

@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <Container maxWidth="lg" sx={{ pt: "24px" }}>
+      <Container maxWidth="md" sx={{ pt: "24px" }}>
         <BrowserRouter>
           <Routes>
             <Route path={"/"} element={<UsersPage />}>

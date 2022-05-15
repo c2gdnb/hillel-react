@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL, API_URL_MOCKAPI } from "../constants";
+import { API_URL } from "../constants";
 
 const api = axios.create({
   baseURL: API_URL,
@@ -8,11 +8,4 @@ const api = axios.create({
   },
 });
 
-const apiUsers = axios.create({
-  baseURL: API_URL_MOCKAPI,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-export { api, apiUsers };
+export { api };

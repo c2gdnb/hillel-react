@@ -5,7 +5,7 @@ export function useLocalStorage(key, defaultValue = "") {
 
   useEffect(() => {
     localStorage.setItem(key, value);
-  }, [value]);
+  }, [key, value]);
 
   return [value, setValue];
 }
