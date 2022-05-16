@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createNewUser, updateUserItem } from "../../../redux/actions/actions";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -15,6 +17,8 @@ function getEmptyUser() {
 function UsersForm(props) {
   const [user, setUser] = useState(getEmptyUser());
   const [formError, setFormError] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (props.userId) {
@@ -22,12 +26,11 @@ function UsersForm(props) {
     }
   }, [props]);
 
-  const onCreateUser = (user) => {
-    props.userId ? props.updateUser(user) : props.addUser(user);
-  };
-
   const onSave = (user) => {
-    onCreateUser(user);
+    props.userId
+      ? dispatch(updateUserItem(user))
+      : dispatch(createNewUser(user));
+    navigate("/");
   };
 
   const onUsersFormSubmit = (e) => {

@@ -15,7 +15,7 @@ function UsersListItem({ item, onDelete }) {
     );
 
     if (confirm) {
-      onDelete(item);
+      onDelete(item.id);
     }
   };
 

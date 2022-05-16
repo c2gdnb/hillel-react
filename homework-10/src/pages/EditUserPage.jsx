@@ -1,14 +1,13 @@
-import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
-import { useUser } from "../hooks/useUser";
+import { useSelector } from "react-redux";
 import UsersForm from "../components/Users/UsersForm/UsersForm";
-import Loading from "../components/common/Loading";
-import useUsers from "../hooks/useUsers";
+import Typography from "@mui/material/Typography";
 
 export default function EditUserPage() {
   const { userId } = useParams();
-  const { user, isLoading } = useUser(userId);
-  const { editUser } = useUsers();
+  let user = useSelector((state) =>
+    state.users.filter((userItem) => userItem.id === userId)
+  );
 
   return (
     <>
@@ -16,11 +15,7 @@ export default function EditUserPage() {
         Edit user
       </Typography>
 
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <UsersForm user={user} userId={userId} updateUser={editUser} />
-      )}
+      <UsersForm user={user[0]} userId={userId} />
     </>
   );
 }

@@ -1,18 +1,24 @@
 import { Link as RouterLink } from "react-router-dom";
-import useUsers from "../../hooks/useUsers";
-import Loading from "../common/Loading";
 import UsersList from "./UsersList/UsersList";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchUsers, removeUserById } from "../../redux/actions/actions";
 
 function Users() {
-  const { users, isLoading, removeUser } = useUsers();
+  let users = useSelector((state) => state.users);
+  const dispatch = useDispatch();
 
-  const onUserDelete = (user) => {
-    removeUser(user.id);
+  const onUserDelete = (id) => {
+    dispatch(removeUserById(id));
   };
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   return (
     <>
@@ -30,11 +36,8 @@ function Users() {
           <AddCircleIcon sx={{ width: "72px", height: "72px" }} />
         </Link>
       </Box>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <UsersList list={users} onDelete={onUserDelete} />
-      )}
+
+      <UsersList list={users} onDelete={onUserDelete} />
     </>
   );
 }

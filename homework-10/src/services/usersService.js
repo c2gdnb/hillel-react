@@ -1,18 +1,31 @@
-import { api } from "../api/api";
-import { USERS_URI } from "../constants";
+import { API_URL } from "../constants";
 
 export function getUsersList() {
-  return api.get(USERS_URI).then((resp) => resp.data);
+  return fetch(API_URL).then((res) => res.json());
 }
+
+export function createUser(item) {
+  return fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify(item),
+    headers: { "Content-Type": "application/json" },
+  }).then((res) => res.json());
+}
+
+export function editUser(item) {
+  return fetch(API_URL + "/" + item.id, {
+    method: "PUT",
+    body: JSON.stringify(item),
+    headers: { "Content-Type": "application/json" },
+  }).then((res) => res.json());
+}
+
 export function getUser(id) {
-  return api.get(USERS_URI + "/" + id).then((resp) => resp.data);
+  return fetch(API_URL + "/" + id).then((res) => res.json());
 }
-export function updateUser(user) {
-  return api.put(USERS_URI + "/" + user.id, user).then((resp) => resp.data);
-}
-export function createUser(user) {
-  return api.post(USERS_URI, user).then((resp) => resp.data);
-}
+
 export function deleteUser(id) {
-  return api.delete(USERS_URI + "/" + id).then((resp) => resp.data);
+  return fetch(API_URL + "/" + id, {
+    method: "DELETE",
+  }).then((res) => res.json());
 }
