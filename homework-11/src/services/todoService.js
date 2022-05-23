@@ -2,7 +2,7 @@ import api from "../api/api";
 import { API_URL } from "../constants";
 
 export function getsTodoList() {
-  return api.get(API_URL).then((resp) => resp.data);
+  return api.get().then((resp) => resp.data);
 }
 
 export function getTodo(id) {
