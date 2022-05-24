@@ -26,8 +26,6 @@ export default function TodosForm() {
     const boolValue = JSON.parse(data.status);
     data.status = boolValue;
 
-    console.log(data);
-
     saveTodo(data);
     navigate("/");
   }
