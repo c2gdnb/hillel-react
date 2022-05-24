@@ -4,12 +4,11 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 const AppHeader = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: "#005BBB" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -30,8 +29,15 @@ const AppHeader = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 0, ml: "auto" }}>
-            <RouterLink to="/users/create">
-              <Button variant="contained" color="secondary">
+            <RouterLink to="/create" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#FFD500",
+                  color: "#2c2c2c",
+                  fontWeight: "bold",
+                }}
+              >
                 Add Todo
               </Button>
             </RouterLink>

@@ -5,9 +5,19 @@ import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-function TodosListItem(props) {
-  const { id, title, status } = props.data;
 
+function TodosListItem(props) {
+  const { title, status, id } = props.data;
+  const newTodo = { ...props.data, status: !props.data.status };
+
+  function handleDeleteClick(event) {
+    event.stopPropagation();
+    props.removeTodo(id);
+  }
+
+  function handleToggleClick(todo) {
+    props.toggleTodo(todo);
+  }
 
   return (
     <ListItem
@@ -16,13 +26,13 @@ function TodosListItem(props) {
         <IconButton
           edge="end"
           aria-label="comments"
-          // onClick={() => handleDeleteClick(id)}
+          onClick={handleDeleteClick}
         >
           <DeleteIcon sx={{ color: "#ff7474" }} />
         </IconButton>
       }
       disablePadding
-      // onClick={() => handleToggleClick(props.data)}
+      onClick={() => handleToggleClick(newTodo)}
       className={status ? "is-active" : ""}
     >
       <ListItemButton>

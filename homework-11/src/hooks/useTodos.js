@@ -4,53 +4,54 @@ import { getsTodoList } from "../services/todoService";
 import {
   createTodoThunk,
   deleteTodoThunk,
-  setUsers,
+  setTodos,
   toogleIsLoading,
-  updateTodoThunk,
+  toggleTodoThunk
 } from "../redux/slices/todos";
 
-const DEFAULT_USER = {
+const DEFAULT_TODO = {
   title: "",
-  status: false,
+  status: "",
 };
 
 export default function useTodos() {
   const isLoading = useSelector((state) => state.todos.isLoading);
-  const users = useSelector((state) => state.todos.todos);
+  const todos = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(toogleIsLoading(true));
     getsTodoList()
-      .then((data) => dispatch(setUsers(data)))
+      .then((data) => dispatch(setTodos(data)))
       .finally(() => dispatch(toogleIsLoading(false)));
   }, [dispatch]);
 
-  function saveUser(user) {
-    if (user.id) {
-      return dispatch(updateTodoThunk(user));
-    } else {
-      return dispatch(createTodoThunk(user));
-    }
+  function saveTodo(todo) {
+    return dispatch(createTodoThunk(todo));
   }
 
-  function removeUser(id) {
+  function removeTodo(id) {
     return dispatch(deleteTodoThunk(id));
   }
 
-  function getUser(id) {
-    let user;
+  function toggleTodo(todo) {
+    return dispatch(toggleTodoThunk(todo));
+  }
+
+  function getTodo(id) {
+    let todo;
     if (id) {
-      user = users.find((user) => user.id === id);
+      todo = todos.find((todo) => todo.id === id);
     }
-    return user || DEFAULT_USER;
+    return todo || DEFAULT_TODO;
   }
 
   return {
-    users,
+    todos,
     isLoading,
-    getUser,
-    saveUser,
-    removeUser,
+    getTodo,
+    saveTodo,
+    toggleTodo,
+    removeTodo,
   };
 }

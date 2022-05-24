@@ -1,17 +1,20 @@
-import { useSelector } from "react-redux";
 import TodosListItem from "./TodosListItem";
 import List from "@mui/material/List";
-import useTodos from "../../hooks/useTodos";
 
-function TodosList() {
-  const { users, isLoading, removeUser } = useTodos();
-
+function TodosList({todos, removeTodo, toggleTodo}) {
   return (
-    <List sx={{ mb: "12px" }}>
-      {users.map((todo) => (
-        <TodosListItem key={todo.id} data={todo} />
-      ))}
-    </List>
+    <>
+      <List>
+        {todos.map((todo) => (
+          <TodosListItem
+            key={todo.id}
+            data={todo}
+            removeTodo={removeTodo}
+            toggleTodo={toggleTodo}
+          />
+        ))}
+      </List>
+    </>
   );
 }
 

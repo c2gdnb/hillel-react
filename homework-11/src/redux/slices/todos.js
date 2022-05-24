@@ -11,26 +11,29 @@ const initialState = {
   todos: [],
 };
 
-export const fetchUsers = () => (dispatch) =>
-  getsTodoList().then((users) => dispatch(setUsers(users)));
+export const fetchTodos = () => (dispatch) =>
+  getsTodoList().then((todos) => dispatch(setTodos(todos)));
 
-export const createTodoThunk = (user) => async (dispatch, getState) => {
-  const data = await createTodo(user);
+export const createTodoThunk = (todo) => async (dispatch, getState) => {
+  const data = await createTodo(todo);
   const state = getState();
-  const newUsers = [...state.todos.todos, user];
+  const newTodos = [...state.todos.todos, todo];
 
-  dispatch(setUsers(newUsers));
+  dispatch(setTodos(newTodos));
   return data;
 };
 
-export const updateTodoThunk = (user) => {
+export const toggleTodoThunk = (todo) => {
   return async function (dispatch, getState) {
-    const data = await updateTodo(user);
     const state = getState();
-    const newUsers = state.todos.todos.map((u) =>
-      u.id === user.id ? user : u
+    const data = await updateTodo(todo);
+
+    const newTodos = state.todos.todos.map((item) =>
+      item.id === todo.id ? { ...item, status: !item.status } : item
     );
-    dispatch(setUsers(newUsers));
+
+    dispatch(setTodos(newTodos));
+
     return data;
   };
 };
@@ -39,17 +42,18 @@ export const deleteTodoThunk = (id) => {
   return async function (dispatch, getState) {
     const data = await deleteTodo(id);
     const state = getState();
-    const newUsers = state.todos.todos.filter((user) => user.id !== id);
-    dispatch(setUsers(newUsers));
+    const newTodos = state.todos.todos.filter((todo) => todo.id !== id);
+
+    dispatch(setTodos(newTodos));
     return data;
   };
 };
 
-export const usersSlice = createSlice({
+export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    setUsers: (state, { payload }) => {
+    setTodos: (state, { payload }) => {
       state.todos = payload;
     },
     toogleIsLoading: (state, { payload }) => {
@@ -58,6 +62,6 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { setUsers, toogleIsLoading } = usersSlice.actions;
+export const { setTodos, toogleIsLoading } = todosSlice.actions;
 
-export default usersSlice.reducer;
+export default todosSlice.reducer;
